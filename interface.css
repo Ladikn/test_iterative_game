@@ -1,18 +1,25 @@
+*
+{
+	display: inline-block;
+}
+
 header
 {
 	height: 30px;
 	padding: 10px 0 0 10px;
 	background: #ddd;
 	margin-bottom: 20px;
+	width: 100%;
 }
 
 .building_box
 {
 	border: 1px solid black;
 	height: 100px;
+	float: left;
 	padding: 25px;
-	margin-top: 20px;
-	width: 80px;
+	margin: 20px 5px;
+	width: auto
 }
 
 .building_box button
