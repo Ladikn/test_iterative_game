@@ -1,9 +1,8 @@
 var kingdom;
 
 $(document).ready(function(){
-	var save = JSON.parse(localStorage.getItem("save"));
 	try {
-		kingdom = save;
+		kingdom = JSON.parse(localStorage.getItem("save"));
 		goldClick(kingdom.workers);
 	}
 	catch(err) {
