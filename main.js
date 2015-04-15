@@ -1,37 +1,47 @@
-var kingdom = {
-	gold: 0, 
-	workers: 0
-}
+var kingdom;
+
+$(document).ready(function(){
+	var save = JSON.parse(localStorage.getItem("save"));
+	if (typeof save === "undefined") {
+		kingdom = initialKingdom();
+	} else {
+		loadGame();
+	}
+	refreshPage();
+});
 
 window.setInterval(function(){
 	goldClick(kingdom.workers);
+	saveGame();
 }, 1000);
+
+function initialKingdom() {
+	return {
+	gold: 0, 
+	workers: 0
+	}
+};
 
 function saveGame() {
 	localStorage.setItem("save", JSON.stringify(kingdom));
-	alert("Game Saved");
-}
+};
 
 function loadGame() {
 	var save = JSON.parse(localStorage.getItem("save"));
 	if (typeof save !== "undefined") kingdom = save;
 	refreshPage();
-}
+};
+
+function deleteGame() {
+	localStorage.removeItem("save");
+	kingdom = initialKingdom();
+	saveGame();
+	refreshPage();
+};
 
 function goldClick(x) {
     kingdom.gold = kingdom.gold + x;
     refreshPage();
-};
-
-function buyWorker() {
-	var workerCost = Math.floor(10 * Math.pow(1.1, kingdom.workers));
-	if (kingdom.gold >= workerCost) {
-		kingdom.workers = kingdom.workers + 1;
-		kingdom.gold = kingdom.gold - workerCost;
-	};
-	var nextCost = Math.floor(10 * Math.pow(1.1, kingdom.workers));
-	$("#workerCost").text(nextCost);
-	refreshPage();
 };
 
 function refreshPage() {
@@ -40,5 +50,5 @@ function refreshPage() {
 	$("#workerCount").text(kingdom.workers);
 
 	//Costs
-	$("#workerCost").text(Math.floor(10 * Math.pow(1.1, kingdom.workers)));
-}
+	$("#workerCost").text(costWorkers());
+};

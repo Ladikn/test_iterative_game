@@ -1,7 +1,9 @@
 header
 {
-	height: 50px;
+	height: 30px;
+	padding: 10px 0 0 10px;
 	background: #ddd;
+	margin-bottom: 20px;
 }
 
 .building_box
@@ -10,5 +12,10 @@ header
 	height: 100px;
 	padding: 25px;
 	margin-top: 20px;
-	width: 100px;
+	width: 80px;
+}
+
+.building_box button
+{
+	margin-bottom: 5px;
 }
