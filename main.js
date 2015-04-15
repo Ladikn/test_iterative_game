@@ -2,10 +2,12 @@ var kingdom;
 
 $(document).ready(function(){
 	var save = JSON.parse(localStorage.getItem("save"));
-	if (typeof save === "undefined") {
+	try {
+		kingdom = save;
+		goldClick(kingdom.workers);
+	}
+	catch(err) {
 		kingdom = initialKingdom();
-	} else {
-		loadGame();
 	}
 	refreshPage();
 });
